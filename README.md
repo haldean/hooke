@@ -10,11 +10,11 @@ Hooke enables a style similar to the same way research papers are laid out, with
 figures independent to -- and referenced from -- the text. The goal is to go
 from this:
 
-<img class="border" src="before.png">
+![][http://haldean.org/hooke/before.png]
 
 To this:
 
-<img class="border" src="after.png">
+![][http://haldean.org/hooke/after.png]
 
 For maximum overkill, I did this using springs (and Hooke's law). While the
 transformation seems fairly simple, bringing the figures in the text out-of-line
@@ -52,12 +52,3 @@ it's just one file to include in your HTML that needs JQuery to run.
 [sousvide]: http://haldean.org/sousvide
 [svanim]: http://haldean.org/sousvide/#animate
 [github]: https://github.com/haldean/hooke
-
-<style>
-.border {
-	border: 0.2em solid #eee;
-	margin-left: -1.7em;
-	margin-top: 1.5em;
-	margin-bottom: 1.5em;
-}
-</style>
