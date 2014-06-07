@@ -10,11 +10,11 @@ Hooke enables a style similar to the same way research papers are laid out, with
 figures independent to -- and referenced from -- the text. The goal is to go
 from this:
 
-![][http://haldean.org/hooke/before.png]
+![](http://haldean.org/hooke/before.png)
 
 To this:
 
-![][http://haldean.org/hooke/after.png]
+![](http://haldean.org/hooke/after.png)
 
 For maximum overkill, I did this using springs (and Hooke's law). While the
 transformation seems fairly simple, bringing the figures in the text out-of-line
