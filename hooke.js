@@ -10,7 +10,8 @@ var max_iters = 50;
 var low_sample_time = 5;
 var low_force_threshold = 0.1;
 
-var debug = false;
+var enable = true;
+var debug = true;
 var animate = false;
 var insert_markers = false;
 
@@ -111,14 +112,32 @@ function done(q, overlap, force) {
     return ++low_samples > low_sample_time;
 }
 
+function is_complete(node) {
+    if (node.complete !== undefined && !node.complete) {
+        return node;
+    }
+    var children = node.children;
+    for (var i = 0; i < children.length; i++) {
+        var c = is_complete(children[i]);
+        if (c !== undefined) {
+            return c;
+        }
+    }
+    return undefined;
+}
+
 function layout() {
+    if (!enable && document.location.hash != "#force") {
+        return;
+    }
+    reset();
+
     var figs = document.getElementsByTagName(tag);
     if (!figs.length || document.location.hash == "#nolayout") {
         log("no figures, bailing.");
         return;
     }
-
-    reset();
+    animate = document.location.hash == "#animate";
 
     if (($(".marker").length == 0) && insert_markers) {
         $("body").append("<style>.marker {" +
@@ -144,6 +163,23 @@ function layout() {
 
     $(figs).css("position", "absolute");
     $(figs).css("max-width", figwidth + "px");
+
+    // after applying position params, abandon ship if not everyone is loaded
+    // yet.
+    var complete = true;
+    for (var i = 0; i < figs.length; i++) {
+        var f = figs[i];
+        var incomplete = is_complete(f)
+        if (incomplete !== undefined && complete) {
+            log("node " + incomplete + " isn't ready yet, listening");
+            $(incomplete).load(layout);
+            complete = false;
+        }
+        $(f).offset({left: leftedge});
+    }
+    if (!complete) {
+        return;
+    }
 
     var q = get_initial_state(figs);
     log(q);

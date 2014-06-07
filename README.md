@@ -1,14 +1,20 @@
 Hooke: figures on springs
 ==
 
-Hooke is a Javascript library-thing that allows you to lay out figures to the
-side of text. The goal is to go from this:
+[See an animated demo here.][svanim]
 
-![](http://haldean.org/hooke/before.png)
+Hooke is a Javascript library-thing that allows you to lay out figures to the
+side of text. This is mostly for aethetic reasons, but it also has the advantage
+that it makes text easier to read, since you aren't interrupted by figures;
+Hooke enables a style similar to the same way research papers are laid out, with
+figures independent to -- and referenced from -- the text. The goal is to go
+from this:
+
+<img class="border" src="before.png">
 
 To this:
 
-![](http://haldean.org/hooke/after.png)
+<img class="border" src="after.png">
 
 For maximum overkill, I did this using springs (and Hooke's law). While the
 transformation seems fairly simple, bringing the figures in the text out-of-line
@@ -31,8 +37,27 @@ than 300 pixels, then it keeps the images inline. This also means that pages
 that use Hooke still look good on phones and tablets.
 
 Note that Hooke, by default, operates on `figure` tags, not `img` tags. This is
-for two reasons: one, it makes it easy to associate images and image captions
-when doing the layout pass; and two, it makes it easy to specify images that
-should stay inline with the text (just use `img` instead of `figure`).
+for a couple reasons: 
+
+1. You can group images and image captions together when doing the layout pass.
+2. You can specify images that should stay inline with the text (just use `img`
+   instead of `figure`).
+3. You can have other things go in the right gutter (code snippets, block
+   quotes, you name it).
+
+For a treat, try appending `#animate` to any page running Hooke, and watch the
+springs in action, [like so][svanim]. You can [get Hooke from Github][github];
+it's just one file to include in your HTML that needs JQuery to run.
 
 [sousvide]: http://haldean.org/sousvide
+[svanim]: http://haldean.org/sousvide/#animate
+[github]: https://github.com/haldean/hooke
+
+<style>
+.border {
+	border: 0.2em solid #eee;
+	margin-left: -1.7em;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+</style>
